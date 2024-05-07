@@ -5,33 +5,72 @@ namespace Shapes
     // Pyramid class is a subclass of ThreeDimensionalShape class
     public class Pyramid : ThreeDimensionalShape
     {
-        private double baseArea;
-        private double height;
+        private readonly double BaseArea;
+        private readonly double Height;
+        private readonly double SlantHeight;
 
-        public Pyramid(double baseArea, double height)
+        public Pyramid(double baseArea, double height, double slantHeight)
         {
-            this.baseArea = baseArea;
-            this.height = height;
+            BaseArea = baseArea;
+            Height = height;
+            SlantHeight = slantHeight;
         }
 
         public override double Volume()
         {
-            return (baseArea * height) / 3;
+            return (BaseArea * Height) / 3;
         }
 
         public override double Area()
         {
-            return baseArea + (0.5 * Perimeter() * SlantHeight());
+            double lateralArea = (Perimeter() * SlantHeight) / 2;
+            return BaseArea + lateralArea;
         }
 
-        public override double Perimeter()
+        private double Perimeter()
         {
-            return 4 * Math.Sqrt(Math.Pow(baseArea, 2) + Math.Pow(0.5 * height, 2));
+            // For a regular polygonal base, perimeter = number of sides * side length
+            // need to provide this method based on implementation
+            // For demonstration purposes, assuming a square base
+            int numberOfSides = 4;
+            double sideLength = Math.Sqrt(BaseArea);
+            
+            return numberOfSides * sideLength;
         }
 
-        private double SlantHeight()
+        // PyramidChosen method is called when the user chooses Pyramid
+        public static void PyramidChosen()
         {
-            return Math.Sqrt(Math.Pow(height, 2) + Math.Pow(0.5 * Perimeter(), 2));
+            Console.WriteLine("Enter the base area of the pyramid: ");
+            try
+            {
+                double baseArea = double.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the height of the pyramid: ");
+                double height = double.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the slant height of the pyramid: ");
+                double slantHeight = double.Parse(Console.ReadLine());
+                Pyramid pyramid = new Pyramid(baseArea, height, slantHeight);
+
+                Console.WriteLine("Do you want to calculate the area or volume of the pyramid or both? (Area: a | Volume: v | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the pyramid is {pyramid.Area()}");
+                else if (choice == "v")
+                    Console.WriteLine($"The volume of the pyramid is {pyramid.Volume()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the pyramid is {pyramid.Area()}");
+                    Console.WriteLine($"The volume of the pyramid is {pyramid.Volume()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                PyramidChosen();
+            }
         }
     }
 }

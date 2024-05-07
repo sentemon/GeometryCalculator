@@ -5,26 +5,52 @@ namespace Shapes
     // Icosahedron class is a subclass of ThreeDimensionalShape class
     public class Icosahedron : ThreeDimensionalShape
     {
-        private double sideLength;
+        private readonly double SideLength;
 
         public Icosahedron(double sideLength)
         {
-            this.sideLength = sideLength;
+            SideLength = sideLength;
         }
 
         public override double Volume()
         {
-            return (5.0 / 12.0) * (3 + Math.Sqrt(5)) * Math.Pow(sideLength, 3);
+            return (5.0 / 12.0) * (3 + Math.Sqrt(5)) * Math.Pow(SideLength, 3);
         }
 
         public override double Area()
         {
-            return 5 * Math.Sqrt(3) * Math.Pow(sideLength, 2);
+            return 5 * Math.Sqrt(3) * Math.Pow(SideLength, 2);
         }
 
-        public override double Perimeter()
+        // IcosahedronChosen method is called when the user chooses Icosahedron
+        public static void IcosahedronChosen()
         {
-            return 30 * sideLength;
+            Console.WriteLine("Enter the side length of the icosahedron: ");
+            try
+            {
+                double sideLength = double.Parse(Console.ReadLine());
+                Icosahedron icosahedron = new Icosahedron(sideLength);
+
+                Console.WriteLine("Do you want to calculate the area or volume of the icosahedron or both? (Area: a | Volume: v | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the icosahedron is {icosahedron.Area()}");
+                else if (choice == "v")
+                    Console.WriteLine($"The volume of the icosahedron is {icosahedron.Volume()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the icosahedron is {icosahedron.Area()}");
+                    Console.WriteLine($"The volume of the icosahedron is {icosahedron.Volume()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                IcosahedronChosen();
+            }
         }
     }
 }

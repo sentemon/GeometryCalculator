@@ -6,29 +6,57 @@ namespace Shapes
     public class Cylinder : ThreeDimensionalShape
     {
         // Properties
-        public double radius { get; set; }
-        public double height { get; set; }
+        public double Radius { get; set; }
+        public double Height { get; set; }
 
         // Constructor
         public Cylinder(double radius, double height)
         {
-            this.radius = radius;
-            this.height = height;
+            Radius = radius;
+            Height = height;
         }
 
         public override double Volume()
         {
-            return Math.PI * radius * radius * height;
+            return Math.PI * Radius * Radius * Height;
         }
 
         public override double Area()
         {
-            return 2 * Math.PI * radius * (radius + height);
+            return 2 * Math.PI * Radius * (Radius + Height);
         }
 
-        public override double Perimeter()
+        // CylinderChosen method is called when the user chooses Cylinder
+        public static void CylinderChosen()
         {
-            return 2 * Math.PI * radius;
+            Console.WriteLine("Enter the radius of the cylinder: ");
+            try
+            {
+                double radius = double.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the height of the cylinder: ");
+                double height = double.Parse(Console.ReadLine());
+                Cylinder cylinder = new Cylinder(radius, height);
+
+                Console.WriteLine("Do you want to calculate the area or volume of the cylinder or both? (Area: a | Volume: v | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the cylinder is {cylinder.Area()}");
+                else if (choice == "v")
+                    Console.WriteLine($"The volume of the cylinder is {cylinder.Volume()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the cylinder is {cylinder.Area()}");
+                    Console.WriteLine($"The volume of the cylinder is {cylinder.Volume()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                CylinderChosen();
+            }
         }
     }
 }

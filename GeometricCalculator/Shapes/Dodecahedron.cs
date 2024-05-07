@@ -5,26 +5,52 @@ namespace Shapes
     // Dodecahedron class is a subclass of ThreeDimensionalShape class
     public class Dodecahedron : ThreeDimensionalShape
     {
-        private double edgeLength;
+        private readonly double EdgeLength;
 
         public Dodecahedron(double edgeLength)
         {
-            this.edgeLength = edgeLength;
+            EdgeLength = edgeLength;
         }
 
         public override double Volume()
         {
-            return (15 + 7 * Math.Sqrt(5)) / 4 * Math.Pow(edgeLength, 3);
+            return (15 + 7 * Math.Sqrt(5)) / 4 * Math.Pow(EdgeLength, 3);
         }
 
         public override double Area()
         {
-            return 3 * Math.Sqrt(25 + 10 * Math.Sqrt(5)) * Math.Pow(edgeLength, 2);
+            return 3 * Math.Sqrt(25 + 10 * Math.Sqrt(5)) * Math.Pow(EdgeLength, 2);
         }
 
-        public override double Perimeter()
+        // DodecahedronChosen method is called when the user chooses Dodecahedron
+        public static void DodecahedronChosen()
         {
-            return 30 * edgeLength;
+            Console.WriteLine("Enter the edge length of the dodecahedron: ");
+            try
+            {
+                double edgeLength = double.Parse(Console.ReadLine());
+                Dodecahedron dodecahedron = new Dodecahedron(edgeLength);
+
+                Console.WriteLine("Do you want to calculate the area or volume of the dodecahedron or both? (Area: a | Volume: v | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the dodecahedron is {dodecahedron.Area()}");
+                else if (choice == "v")
+                    Console.WriteLine($"The volume of the dodecahedron is {dodecahedron.Volume()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the dodecahedron is {dodecahedron.Area()}");
+                    Console.WriteLine($"The volume of the dodecahedron is {dodecahedron.Volume()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                DodecahedronChosen();
+            }
         }
     }
 }

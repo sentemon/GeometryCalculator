@@ -5,21 +5,53 @@ namespace Shapes
     // Circle class is a subclass of TwoDimensionalShape class
     public class Circle : TwoDimensionalShape
     {
-        private double radius;
+        private readonly double Radius;
 
         public Circle(double radius)
         {
-            this.radius = radius;
+            Radius = radius;
         }
 
         public override double Area()
         {
-            return Math.PI * Math.Pow(radius, 2);
+            return Math.PI * Math.Pow(Radius, 2);
         }
 
         public override double Perimeter()
         {
-            return 2 * Math.PI * radius;
+            return 2 * Math.PI * Radius;
+        }
+
+        // IfCircle method is called when the user chooses Circle
+        public static void CircleChosen()
+        {
+            Console.WriteLine("Enter the radius of the circle: ");
+            try
+            {
+                double radius = double.Parse(Console.ReadLine());
+                Circle circle = new Circle(radius);
+
+                Console.WriteLine("Do you want to calculate the area or perimeter of the circle or both? (Area: a | Perimeter: p | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the circle is {circle.Area()}");
+                else if (choice == "p")
+                    Console.WriteLine($"The perimeter of the circle is {circle.Perimeter()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the circle is {circle.Area()}");
+                    Console.WriteLine($"The perimeter of the circle is {circle.Perimeter()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                CircleChosen();
+            }
         }
     }
 }

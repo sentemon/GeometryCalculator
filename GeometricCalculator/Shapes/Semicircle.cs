@@ -5,21 +5,52 @@ namespace Shapes
     // Semicircle class is a subclass of TwoDimensionalShape class
     public class Semicircle : TwoDimensionalShape
     {
-        private double radius;
+        private readonly double Radius;
 
         public Semicircle(double radius)
         {
-            this.radius = radius;
+            Radius = radius;
         }
 
         public override double Area()
         {
-            return Math.PI * Math.Pow(radius, 2) / 2;
+            return Math.PI * Math.Pow(Radius, 2) / 2;
         }
 
         public override double Perimeter()
         {
-            return Math.PI * radius + 2 * radius;
+            return Math.PI * Radius + 2 * Radius;
+        }
+
+        // SemicircleChosen method is called when the user chooses Semicircle
+        public static void SemicircleChosen()
+        {
+            Console.WriteLine("Enter the radius of the semicircle: ");
+            try
+            {
+                double radius = double.Parse(Console.ReadLine());
+                Semicircle semicircle = new Semicircle(radius);
+
+                Console.WriteLine("Do you want to calculate the area or perimeter of the semicircle or both? (Area: a | Perimeter: p | Both: b)");
+                string choice = Console.ReadKey().Key.ToString().ToLower();
+
+                if (choice == "a")
+                    Console.WriteLine($"The area of the semicircle is {semicircle.Area()}");
+                else if (choice == "p")
+                    Console.WriteLine($"The perimeter of the semicircle is {semicircle.Perimeter()}");
+                else if (choice == "b")
+                {
+                    Console.WriteLine($"The area of the semicircle is {semicircle.Area()}");
+                    Console.WriteLine($"The perimeter of the semicircle is {semicircle.Perimeter()}");
+                }
+                else
+                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+                SemicircleChosen();
+            }
         }
     }
 }
