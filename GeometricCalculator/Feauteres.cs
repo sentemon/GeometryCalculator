@@ -4,26 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Reflection;
 
 namespace GeometricCalculator
 {
     internal class Features
     {
-        // Show all shapes in the Shapes folder but it's working only for me because the path is hardcoded and I don't know how to make it work for everyone
-        public static void ShowShapes()
-        {
-            string pathOfShapes = @"/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/Shapes";
-            
-            string[] shapesName = Directory.GetFiles(pathOfShapes);
-
-            for (int i = 0; i < shapesName.Length; i++)
-            {
-                Console.WriteLine($"{i + 1}. {shapesName[i]
-                    .Replace("/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/Shapes/", "")
-                    .Replace(".cs", "")}");
-            }
-        }
-
+        private static Dictionary<int, string> shapes = new Dictionary<int, string>();
         public static void ChooseShape(int shapeNumber)
         {
             switch (shapeNumber)
@@ -130,6 +117,35 @@ namespace GeometricCalculator
             }
         }
 
+        // it's not working but I will fix it
+        // public static void ChooseShape(int shapeNumber)
+        // {
+        //     string className =  shapes[shapeNumber].GetType().Name;
+        //     string methodName = shapes[shapeNumber] + "Chosen";
+        //     Type type = Type.GetType("Shapes." + className);
+        //     if (type != null)
+        //     {
+        //         MethodInfo method = type.GetMethod(methodName);
+        //
+        //         if (method != null)
+        //         {
+        //             object instance = Activator.CreateInstance(type);
+        //
+        //             method.Invoke(instance, null);
+        //         }
+        //         else
+        //         {
+        //             Console.WriteLine($"{methodName} Method not found");
+        //         }
+        //     }
+        //     else
+        //     {
+        //         Console.WriteLine($"{className} Class not found");
+        //     }
+        // }
+
+        
+
         public static bool CheckContinue()
         {
             Console.WriteLine("Do you want to continue? (y/n)");
@@ -139,6 +155,37 @@ namespace GeometricCalculator
                 return true;
 
             return false;
+        }
+
+        public static void WriteMessage(string message, int speedDelay = 50)
+        {
+            foreach (var c in message)
+            {
+                Console.Write(c);
+                Task.Delay(speedDelay).Wait();
+            }
+            Console.WriteLine();
+        }
+
+        // all shapes names in dictionary
+        public static void ShowShapes()
+        {
+            string pathOfShapes = "/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/";
+            string[] shapesName = Directory.GetFiles(pathOfShapes);
+
+            
+
+            for (int i = 0; i < shapesName.Length; i++)
+            {
+                shapes.Add(i + 1, shapesName[i]
+                    .Replace("/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/", "")
+                    .Replace(".cs", ""));
+            }
+
+            foreach (var shape in shapes)
+            {
+                Console.WriteLine($"{shape.Key}. {shape.Value}");
+            }
         }
 
     }

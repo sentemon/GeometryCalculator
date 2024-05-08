@@ -16,7 +16,7 @@ namespace GeometricCalculator
         public static void StartProgram()
         {
             Console.WriteLine("Choose a shape to calculate its properties: ");
-
+            
             Features.ShowShapes();
             
             Console.Write("Enter the number of the shape: ");
@@ -26,6 +26,7 @@ namespace GeometricCalculator
                 
                 TryAgainWithTheSameShape:
                 Features.ChooseShape(shapeNumber);
+                
                 if (Features.CheckContinue())
                 {
                     Console.WriteLine("Do you want to calculate the property of another shape? (y/n)");
@@ -44,7 +45,7 @@ namespace GeometricCalculator
 
                 else
                 {
-                    Console.WriteLine("Thx, goodbye");
+                    Console.WriteLine("\nThank you for using Geometric Calculator!");
                 }
             }
             catch (Exception e)
