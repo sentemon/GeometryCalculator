@@ -42,19 +42,16 @@ namespace GeometricCalculator
                     }
                     catch (Exception e)
                     {
-                        // Catch any exceptions that occur during method invocation
                         Console.WriteLine($"Error invoking method: {e.Message}");
                     }
                 }
                 else
                 {
-                    // If the method does not exist, print a message indicating so
                     Console.WriteLine($"{methodName} Method not found");
                 }
             }
             else
             {
-                // If the shape class does not exist, print a message indicating so
                 Console.WriteLine($"{className} Class not found");
             }
         }

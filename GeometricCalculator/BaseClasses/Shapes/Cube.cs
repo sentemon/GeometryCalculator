@@ -37,20 +37,21 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the cube is {cube.Area()}");
+                    Console.WriteLine($"\nThe area of the cube is {cube.Area()}");
                 else if (choice == "v")
-                    Console.WriteLine($"The volume of the cube is {cube.Volume()}");
+                    Console.WriteLine($"\nThe volume of the cube is {cube.Volume()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the cube is {cube.Area()}");
-                    Console.WriteLine($"The volume of the cube is {cube.Volume()}");
+                    Console.WriteLine($"\nThe area of the cube is {cube.Area()}");
+                    Console.WriteLine($"\nThe volume of the cube is {cube.Volume()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 CubeChosen();
             }
         }

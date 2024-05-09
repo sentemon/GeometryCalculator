@@ -35,21 +35,22 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the circle is {circle.Area()}");
+                    Console.WriteLine($"\nThe area of the circle is {circle.Area()}");
                 else if (choice == "p")
-                    Console.WriteLine($"The perimeter of the circle is {circle.Perimeter()}");
+                    Console.WriteLine($"\nThe perimeter of the circle is {circle.Perimeter()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the circle is {circle.Area()}");
-                    Console.WriteLine($"The perimeter of the circle is {circle.Perimeter()}");
+                    Console.WriteLine($"\nThe area of the circle is {circle.Area()}");
+                    Console.WriteLine($"\nThe perimeter of the circle is {circle.Perimeter()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 CircleChosen();
             }
         }

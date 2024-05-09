@@ -39,20 +39,21 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the pentagonal prism is {pentagonalPrism.Area()}");
+                    Console.WriteLine($"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}");
                 else if (choice == "v")
-                    Console.WriteLine($"The volume of the pentagonal prism is {pentagonalPrism.Volume()}");
+                    Console.WriteLine($"\nThe volume of the pentagonal prism is {pentagonalPrism.Volume()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the pentagonal prism is {pentagonalPrism.Area()}");
-                    Console.WriteLine($"The volume of the pentagonal prism is {pentagonalPrism.Volume()}");
+                    Console.WriteLine($"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}");
+                    Console.WriteLine($"\nThe volume of the pentagonal prism is {pentagonalPrism.Volume()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 PentagonalPrismChosen();
             }
         }

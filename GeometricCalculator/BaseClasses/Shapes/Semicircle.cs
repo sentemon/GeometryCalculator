@@ -35,20 +35,21 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the semicircle is {semicircle.Area()}");
+                    Console.WriteLine($"\nThe area of the semicircle is {semicircle.Area()}");
                 else if (choice == "p")
-                    Console.WriteLine($"The perimeter of the semicircle is {semicircle.Perimeter()}");
+                    Console.WriteLine($"\nThe perimeter of the semicircle is {semicircle.Perimeter()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the semicircle is {semicircle.Area()}");
-                    Console.WriteLine($"The perimeter of the semicircle is {semicircle.Perimeter()}");
+                    Console.WriteLine($"\nThe area of the semicircle is {semicircle.Area()}");
+                    Console.WriteLine($"\nThe perimeter of the semicircle is {semicircle.Perimeter()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 SemicircleChosen();
             }
         }

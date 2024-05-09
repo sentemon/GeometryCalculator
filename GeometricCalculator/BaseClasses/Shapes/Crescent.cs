@@ -40,20 +40,21 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the crescent is {crescent.Area()}");
+                    Console.WriteLine($"\nThe area of the crescent is {crescent.Area()}");
                 else if (choice == "p")
-                    Console.WriteLine($"The perimeter of the crescent is {crescent.Perimeter()}");
+                    Console.WriteLine($"\nThe perimeter of the crescent is {crescent.Perimeter()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the crescent is {crescent.Area()}");
-                    Console.WriteLine($"The perimeter of the crescent is {crescent.Perimeter()}");
+                    Console.WriteLine($"\nThe area of the crescent is {crescent.Area()}");
+                    Console.WriteLine($"\nThe perimeter of the crescent is {crescent.Perimeter()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 CrescentChosen();
             }
         }

@@ -43,20 +43,21 @@ namespace Shapes
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"The area of the cuboid is {cuboid.Area()}");
+                    Console.WriteLine($"\nThe area of the cuboid is {cuboid.Area()}");
                 else if (choice == "v")
-                    Console.WriteLine($"The volume of the cuboid is {cuboid.Volume()}");
+                    Console.WriteLine($"\nThe volume of the cuboid is {cuboid.Volume()}");
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"The area of the cuboid is {cuboid.Area()}");
-                    Console.WriteLine($"The volume of the cuboid is {cuboid.Volume()}");
+                    Console.WriteLine($"\nThe area of the cuboid is {cuboid.Area()}");
+                    Console.WriteLine($"\nThe volume of the cuboid is {cuboid.Volume()}");
                 }
                 else
-                    Console.WriteLine("Invalid input. Please enter a valid choice.");
+                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine($"\nError: {e.Message}");
+                Console.WriteLine("Please enter a valid number.");
                 CuboidChosen();
             }
         }
