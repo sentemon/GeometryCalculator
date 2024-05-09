@@ -11,141 +11,59 @@ namespace GeometricCalculator
     internal class Features
     {
         private static Dictionary<int, string> shapes = new Dictionary<int, string>();
+
+        /* 
+            This method dynamically selects and invokes a method based on the provided shapeNumber.
+            It retrieves the name of the shape class and constructs the method name to be invoked.
+            Using reflection, it fetches the corresponding method and executes it if found.
+            If the shape class or the method does not exist, appropriate error messages are printed.
+        */
         public static void ChooseShape(int shapeNumber)
         {
-            switch (shapeNumber)
+            string className =  shapes[shapeNumber];
+            string methodName = className + "Chosen";
+
+            // Get the Type object for the shape class using reflection
+            Type type = Type.GetType("Shapes." + className);
+
+            // If the Type object is not null, the shape class exists
+            if (type != null)
             {
-                case 1:
-                    Shapes.Circle.CircleChosen();
-                    break;
-                case 2:
-                    Shapes.Pentagon.PentagonChosen();
-                    break;
-                case 3:
-                    Shapes.Crescent.CrescentChosen();
-                    break;
-                case 4:
-                    Shapes.Hexagon.HexagonChosen();
-                    break;
-                case 5:
-                    Shapes.Icosahedron.IcosahedronChosen();
-                    break;
-                case 6:
-                    Shapes.Oval.OvalChosen();
-                    break;
-                case 7:
-                    Shapes.Rhombus.RhombusChosen();
-                    break;
-                case 8:
-                    Shapes.Nonagon.NonagonChosen();
-                    break;
-                case 9:
-                    Shapes.Hendecagon.HendecagonChosen();
-                    break;
-                case 10:
-                    Shapes.Parallelogram.ParallelogramChosen();
-                    break;
-                case 11:
-                    Shapes.Pyramid.PyramidChosen();
-                    break;
-                case 12:
-                    Shapes.Trapezoid.TrapezoidChosen();
-                    break;
-                case 13:
-                    Shapes.Square.SquareChosen();
-                    break;
-                case 14:
-                    Shapes.Octagon.OctagonChosen();
-                    break;
-                case 15:
-                    Shapes.Decagon.DecagonChosen();
-                    break;
-                case 16:
-                    Shapes.Dodecahedron.DodecahedronChosen();
-                    break;
-                case 17:
-                    Shapes.Kite.KiteChosen();
-                    break;
-                case 18:
-                    Shapes.Cylinder.CylinderChosen();
-                    break;
-                case 19:
-                    Shapes.Sphere.SphereChosen();
-                    break;
-                case 20:
-                    Shapes.Semicircle.SemicircleChosen();
-                    break;
-                case 21:
-                    Shapes.Octahedron.OctahedronChosen();
-                    break;
-                case 22:
-                    Shapes.Cube.CubeChosen();
-                    break;
-                case 23:
-                    Shapes.Dodecagon.DodecagonChosen();
-                    break;
-                case 24:
-                    Console.WriteLine("need to fix");
-                    break;
-                case 25:
-                    Shapes.Rectangle.RectangleChosen();
-                    break;
-                case 26:
-                    Shapes.Cone.ConeChosen();
-                    break;
-                case 27:
-                    Shapes.TriangularPrism.TriangularPrismChosen();
-                    break;
-                case 28:
-                    Shapes.Triangle.TriangleChosen();
-                    break;
-                case 29:
-                    Console.WriteLine("need to fix");
-                    break;
-                case 30:
-                    Shapes.Cuboid.CuboidChosen();
-                    break;
-                case 31:
-                    Console.WriteLine("need to fix");
-                    break;
-                case 32:
-                    Shapes.PentagonalPrism.PentagonalPrismChosen();
-                    break;
-                default:
-                    Console.WriteLine("Invalid input. Please enter a valid number.");
-                    break;
+                // Get the method information for the method to be invoked
+                MethodInfo method = type.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public);
+    
+                // If the method exists, invoke it
+                if (method != null)
+                {
+                    try
+                    {
+                        // Invoke the method on a null object instance since it's static
+                        method.Invoke(null, null);
+                    }
+                    catch (Exception e)
+                    {
+                        // Catch any exceptions that occur during method invocation
+                        Console.WriteLine($"Error invoking method: {e.Message}");
+                    }
+                }
+                else
+                {
+                    // If the method does not exist, print a message indicating so
+                    Console.WriteLine($"{methodName} Method not found");
+                }
+            }
+            else
+            {
+                // If the shape class does not exist, print a message indicating so
+                Console.WriteLine($"{className} Class not found");
             }
         }
 
-        // it's not working but I will fix it
-        // public static void ChooseShape(int shapeNumber)
-        // {
-        //     string className =  shapes[shapeNumber].GetType().Name;
-        //     string methodName = shapes[shapeNumber] + "Chosen";
-        //     Type type = Type.GetType("Shapes." + className);
-        //     if (type != null)
-        //     {
-        //         MethodInfo method = type.GetMethod(methodName);
-        //
-        //         if (method != null)
-        //         {
-        //             object instance = Activator.CreateInstance(type);
-        //
-        //             method.Invoke(instance, null);
-        //         }
-        //         else
-        //         {
-        //             Console.WriteLine($"{methodName} Method not found");
-        //         }
-        //     }
-        //     else
-        //     {
-        //         Console.WriteLine($"{className} Class not found");
-        //     }
-        // }
-
         
-
+        /*
+            This method prompts the user to continue or exit the program.
+            It reads the user's choice and returns true if the user wants to continue, false otherwise.
+        */
         public static bool CheckContinue()
         {
             Console.WriteLine("Do you want to continue? (y/n)");
@@ -157,7 +75,11 @@ namespace GeometricCalculator
             return false;
         }
 
-        public static void WriteMessage(string message, int speedDelay = 50)
+        /*
+            This method writes a message character by character with a delay between each character.
+            The speedDelay parameter specifies the delay between each character.
+        */
+        public static void WriteMessage(string message, int speedDelay = 25)
         {
             foreach (var c in message)
             {
@@ -170,21 +92,23 @@ namespace GeometricCalculator
         // all shapes names in dictionary
         public static void ShowShapes()
         {
+            foreach (var shape in shapes)
+            {
+                Console.WriteLine($"{shape.Key}. {shape.Value}");
+            }
+        }
+
+        // Write all shapes names in dictionary
+        public static void WriteShapes()
+        {
             string pathOfShapes = "/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/";
             string[] shapesName = Directory.GetFiles(pathOfShapes);
-
-            
 
             for (int i = 0; i < shapesName.Length; i++)
             {
                 shapes.Add(i + 1, shapesName[i]
                     .Replace("/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/", "")
                     .Replace(".cs", ""));
-            }
-
-            foreach (var shape in shapes)
-            {
-                Console.WriteLine($"{shape.Key}. {shape.Value}");
             }
         }
 
