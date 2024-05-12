@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Shapes;
 
-namespace GeometricCalculator
+namespace GeometryCalculator
 {
     internal class Run
     {
         public static void Welcome()
         {
-            Console.WriteLine("Welcome to Geometric Calculator created by Sentemon");
+            Console.WriteLine("Welcome to Geometry Calculator created by Sentemon");
         }
 
         public static void StartProgram()
@@ -51,7 +51,7 @@ namespace GeometricCalculator
             }
             catch (Exception e)
             {
-                Console.WriteLine("Invalid input. Please enter a number.");
+                Console.WriteLine("\nInvalid input. Please enter a number.");
                 StartProgram();
             }
         }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
 
-namespace GeometricCalculator
+namespace GeometryCalculator
 {
     internal class Features
     {
@@ -99,7 +99,7 @@ namespace GeometricCalculator
         // Write all shapes names in dictionary
         public static void WriteShapes()
         {
-            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "GeometricCalculator/GeometricCalculator/BaseClasses/Shapes");
+            string directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "GeometryCalculator/Src/BaseClasses/Shapes");
 
             if (Directory.Exists(directoryPath))
             {
@@ -107,7 +107,6 @@ namespace GeometricCalculator
                 for (int i = 0; i < files.Length; i++)
                 {
                     string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(files[i]);
-                    Console.WriteLine($"{i + 1} {fileNameWithoutExtension}");
                     shapes.Add(i + 1, fileNameWithoutExtension);
                 }
             }

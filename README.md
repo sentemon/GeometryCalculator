@@ -8,12 +8,12 @@ The "Geometric Calculator" project is a console-based application designed to ca
 
 1. Clone the repository to your computer (it must be in home directory):
     ```bash
-    git clone https://github.com/sentemon/GeometricCalculator.git
+    git clone https://github.com/sentemon/GeometryCalculator.git
     ```
 
 2. Navigate to the project directory:
     ```bash
-    cd GeometricCalculator
+    cd GeometryCalculator
     ```
 
 3. Run the project:
@@ -27,6 +27,6 @@ The "Geometric Calculator" project is a console-based application designed to ca
 
 ## Credits
 - Author: Ivan Sentemon
-- GitHub Repository: [GeometricCalculator](https://github.com/sentemon/GeometricCalculator)
+- GitHub Repository: [GeometryCalculator](https://github.com/sentemon/GeometryCalculator)
 
 Feel free to contribute or report issues!

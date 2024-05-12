@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometricCalculator", "GeometricCalculator.csproj", "{E46E1F8A-FD2C-49DE-B6DD-65E2869C588A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeometryCalculator", "GeometryCalculator.csproj", "{E46E1F8A-FD2C-49DE-B6DD-65E2869C588A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

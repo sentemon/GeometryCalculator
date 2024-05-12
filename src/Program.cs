@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Shapes;
 
-namespace GeometricCalculator
+namespace GeometryCalculator
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
-            Console.Title = "GeometricCalculator";
+            Console.Title = "GeometryCalculator";
             Console.Clear();
             Run.Welcome();
             Features.WriteShapes();
