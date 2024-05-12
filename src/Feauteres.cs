@@ -99,13 +99,13 @@ namespace GeometricCalculator
         // Write all shapes names in dictionary
         public static void WriteShapes()
         {
-            string pathOfShapes = "/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/";
+            string pathOfShapes = "/Users/mac/Desktop/GeometricCalculator/src/BaseClasses/Shapes/";
             string[] shapesName = Directory.GetFiles(pathOfShapes);
 
             for (int i = 0; i < shapesName.Length; i++)
             {
                 shapes.Add(i + 1, shapesName[i]
-                    .Replace("/Users/mac/Desktop/GeometricCalculator/GeometricCalculator/BaseClasses/Shapes/", "")
+                    .Replace("/Users/mac/Desktop/GeometricCalculator/src/BaseClasses/Shapes/", "")
                     .Replace(".cs", ""));
             }
         }
