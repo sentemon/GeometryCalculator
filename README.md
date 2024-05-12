@@ -7,7 +7,7 @@ The "Geometric Calculator" project is a console-based application designed to ca
 0. Before running the project, make sure you have the [.NET Core SDK](https://dotnet.microsoft.com/en-us/download) installed.
 1. Clone the repository to your computer:
     ```bash
-    git clone https://github.com/sentemon/SimpleTextEditor.git
+    git clone https://github.com/sentemon/GeometricCalculator.git
     ```
 2. Navigate to the project directory:
     ```bash
