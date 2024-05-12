@@ -11,7 +11,7 @@ The "Geometric Calculator" project is a console-based application designed to ca
     ```
 2. Navigate to the project directory:
     ```bash
-    cd SimpleTextEditor
+    cd GeometricCalculator
     ```
 3. Run the project:
     ```bash
