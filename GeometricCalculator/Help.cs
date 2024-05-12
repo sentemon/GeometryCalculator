@@ -2,6 +2,7 @@ using System;
 
 namespace GeometricCalculator
 {
+    // Actually, this class is not used in the program.
     public class Help
     {
         public static void ShowHelp()

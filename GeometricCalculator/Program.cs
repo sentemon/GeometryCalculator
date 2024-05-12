@@ -11,6 +11,7 @@ namespace GeometricCalculator
     {
         public static void Main(string[] args)
         {
+            Console.Title = "GeometricCalculator";
             Console.Clear();
             Run.Welcome();
             Features.WriteShapes();

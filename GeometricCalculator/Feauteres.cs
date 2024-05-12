@@ -72,6 +72,7 @@ namespace GeometricCalculator
             return false;
         }
 
+        // Actually, this method is not used in the program.
         /*
             This method writes a message character by character with a delay between each character.
             The speedDelay parameter specifies the delay between each character.
