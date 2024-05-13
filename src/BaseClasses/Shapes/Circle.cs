@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes 
 {
@@ -25,32 +26,51 @@ namespace Shapes
         // IfCircle method is called when the user chooses Circle
         public static void CircleChosen()
         {
-            Console.WriteLine("Enter the radius of the circle: ");
+            string enterRadius = "Enter the radius of the circle: ";
+            Features.WriteMessage(enterRadius);
+
             try
             {
                 double radius = double.Parse(Console.ReadLine());
                 Circle circle = new Circle(radius);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the circle or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the circle or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the circle is {circle.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the circle is {circle.Area()}";
+                    Features.WriteMessage(areaMessage);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the circle is {circle.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the circle is {circle.Perimeter()}";
+                    Features.WriteMessage(perimeterMessage);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the circle is {circle.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the circle is {circle.Perimeter()}");
+                    string areaMessage = $"\nThe area of the circle is {circle.Area()}";
+                    Features.WriteMessage(areaMessage);
+
+                    string perimeterMessage = $"The perimeter of the circle is {circle.Perimeter()}";
+                    Features.WriteMessage(perimeterMessage);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "\nInvalid input. Please enter a valid choice.";
+                    Features.WriteMessage(invalidChoice);
+                }
             }
             
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(errorMessage);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(enterValidNumber);
+                
                 CircleChosen();
             }
         }

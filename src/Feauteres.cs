@@ -42,17 +42,20 @@ namespace GeometryCalculator
                     }
                     catch (Exception e)
                     {
+                        string errorInvokingMethod = $"Error invoking method: {e.Message}";
                         Console.WriteLine($"Error invoking method: {e.Message}");
                     }
                 }
                 else
                 {
-                    Console.WriteLine($"{methodName} Method not found");
+                    string errorMethodNotFound = $"{methodName} Method not found";
+                    Features.WriteMessage(errorMethodNotFound);
                 }
             }
             else
             {
-                Console.WriteLine($"{className} Class not found");
+                string errorClassNotFound = $"{className} Class not found";
+                Features.WriteMessage(errorClassNotFound);
             }
         }
 
@@ -63,7 +66,8 @@ namespace GeometryCalculator
         */
         public static bool CheckContinue()
         {
-            Console.WriteLine("Do you want to continue? (y/n)");
+            string askContinue = "Do you want to continue? (y/n)";
+            Features.WriteMessage(askContinue);
             string choice = Console.ReadKey().Key.ToString().ToLower();
 
             if (choice == "y")
@@ -72,27 +76,35 @@ namespace GeometryCalculator
             return false;
         }
 
-        // Actually, this method is not used in the program.
         /*
             This method writes a message character by character with a delay between each character.
+            If the spacebar is pressed, the remaining message is displayed without delay.
             The speedDelay parameter specifies the delay between each character.
         */
-        public static void WriteMessage(string message, int speedDelay = 25)
+        public static void WriteMessage(string message, int speedDelay = 50)
         {
             foreach (var c in message)
             {
                 Console.Write(c);
+                if (Console.KeyAvailable && Console.ReadKey(true).Key == ConsoleKey.Spacebar)
+                {
+                    Console.Write(message.Substring(message.IndexOf(c) + 1));
+                    break;
+                }
+
                 Task.Delay(speedDelay).Wait();
             }
             Console.WriteLine();
         }
+
 
         // all shapes names in dictionary
         public static void ShowShapes()
         {
             foreach (var shape in shapes)
             {
-                Console.WriteLine($"{shape.Key}. {shape.Value}");
+                string writeKeyAndValue = $"{shape.Key}. {shape.Value}";
+                Features.WriteMessage(writeKeyAndValue, speedDelay: 4);
             }
         }
 
@@ -112,7 +124,8 @@ namespace GeometryCalculator
             }
             else
             {
-                Console.WriteLine("Directory does not exist.");
+                string errorDirectoryNotFound = "Directory does not exist.";
+                Features.WriteMessage(errorDirectoryNotFound);
             }
         }
 
