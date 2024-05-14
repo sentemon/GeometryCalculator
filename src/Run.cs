@@ -58,12 +58,16 @@ namespace GeometryCalculator
             }
             catch (Exception e)
             {
+                ConsoleColor color = ConsoleColor.Red;
+                Console.ForegroundColor = color;
+                
                 string errorMessage = "An error occurred: " + e.Message;
                 Features.WriteMessage(errorMessage);
 
                 string invalidInput = "Invalid input. Please enter a number.";
                 Features.WriteMessage(invalidInput);
-
+                
+                Console.ResetColor();
                 StartProgram(); // Restart the program
             }
         }

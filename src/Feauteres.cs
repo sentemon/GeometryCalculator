@@ -43,7 +43,7 @@ namespace GeometryCalculator
                     catch (Exception e)
                     {
                         string errorInvokingMethod = $"Error invoking method: {e.Message}";
-                        Console.WriteLine($"Error invoking method: {e.Message}");
+                        Features.WriteMessage(errorInvokingMethod);
                     }
                 }
                 else
