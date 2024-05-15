@@ -9,6 +9,8 @@ namespace GeometryCalculator
 {
     internal class Run
     {
+        private static ConsoleColor color = ConsoleColor.Red;
+        
         public static void Welcome()
         {
             string welcomeMessage = "Welcome to Geometry Calculator created by Sentemon";
@@ -58,7 +60,6 @@ namespace GeometryCalculator
             }
             catch (Exception e)
             {
-                ConsoleColor color = ConsoleColor.Red;
                 Console.ForegroundColor = color;
                 
                 string errorMessage = "An error occurred: " + e.Message;

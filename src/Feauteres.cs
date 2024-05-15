@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Reflection;
+using System.Drawing;
 
 namespace GeometryCalculator
 {
     internal class Features
     {
+        private static ConsoleColor color = ConsoleColor.Red;
+
         private static Dictionary<int, string> shapes = new Dictionary<int, string>();
 
         /* 
@@ -42,20 +45,26 @@ namespace GeometryCalculator
                     }
                     catch (Exception e)
                     {
+                        Console.ForegroundColor = color;
                         string errorInvokingMethod = $"Error invoking method: {e.Message}";
                         Features.WriteMessage(errorInvokingMethod);
+                        Console.ResetColor();
                     }
                 }
                 else
                 {
+                    Console.ForegroundColor = color;
                     string errorMethodNotFound = $"{methodName} Method not found";
                     Features.WriteMessage(errorMethodNotFound);
+                    Console.ResetColor();
                 }
             }
             else
             {
+                Console.ForegroundColor = color;
                 string errorClassNotFound = $"{className} Class not found";
                 Features.WriteMessage(errorClassNotFound);
+                Console.ResetColor();
             }
         }
 
@@ -124,8 +133,10 @@ namespace GeometryCalculator
             }
             else
             {
+                Console.ForegroundColor = color;
                 string errorDirectoryNotFound = "Directory does not exist.";
                 Features.WriteMessage(errorDirectoryNotFound);
+                Console.ResetColor();
             }
         }
 
