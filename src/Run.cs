@@ -9,12 +9,10 @@ namespace GeometryCalculator
 {
     internal class Run
     {
-        private static ConsoleColor color = ConsoleColor.Red;
-        
         public static void Welcome()
         {
             string welcomeMessage = "Welcome to Geometry Calculator created by Sentemon";
-            Features.WriteMessage(welcomeMessage);
+            Features.WriteMessage(message: welcomeMessage);
         }
 
         public static void StartProgram()
@@ -55,20 +53,17 @@ namespace GeometryCalculator
                 else
                 {
                     string thank = "\nThank you for using Geometric Calculator!";
-                    Features.WriteMessage(thank);
+                    Features.WriteMessage(message: thank, colorMessage: ColorMessage.Success);
                 }
             }
             catch (Exception e)
             {
-                Console.ForegroundColor = color;
-                
-                string errorMessage = "An error occurred: " + e.Message;
-                Features.WriteMessage(errorMessage);
+                string errorMessage = "Invalid input.\nAn error occurred: " + e.Message;
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Erorr);
 
-                string invalidInput = "Invalid input. Please enter a number.";
-                Features.WriteMessage(invalidInput);
+                string enterNumber = "Please enter a number.";
+                Features.WriteMessage(message: enterNumber);
                 
-                Console.ResetColor();
                 StartProgram(); // Restart the program
             }
         }

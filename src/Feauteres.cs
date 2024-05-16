@@ -11,8 +11,6 @@ namespace GeometryCalculator
 {
     internal class Features
     {
-        private static ConsoleColor color = ConsoleColor.Red;
-
         private static Dictionary<int, string> shapes = new Dictionary<int, string>();
 
         /* 
@@ -45,26 +43,20 @@ namespace GeometryCalculator
                     }
                     catch (Exception e)
                     {
-                        Console.ForegroundColor = color;
                         string errorInvokingMethod = $"Error invoking method: {e.Message}";
-                        Features.WriteMessage(errorInvokingMethod);
-                        Console.ResetColor();
+                        Features.WriteMessage(message: errorInvokingMethod, colorMessage: ColorMessage.Erorr);
                     }
                 }
                 else
                 {
-                    Console.ForegroundColor = color;
                     string errorMethodNotFound = $"{methodName} Method not found";
-                    Features.WriteMessage(errorMethodNotFound);
-                    Console.ResetColor();
+                    Features.WriteMessage(message: errorMethodNotFound, colorMessage: ColorMessage.Erorr);
                 }
             }
             else
             {
-                Console.ForegroundColor = color;
                 string errorClassNotFound = $"{className} Class not found";
-                Features.WriteMessage(errorClassNotFound);
-                Console.ResetColor();
+                Features.WriteMessage(message: errorClassNotFound, colorMessage: ColorMessage.Erorr);
             }
         }
 
@@ -90,8 +82,10 @@ namespace GeometryCalculator
             If the spacebar is pressed, the remaining message is displayed without delay.
             The speedDelay parameter specifies the delay between each character.
         */
-        public static void WriteMessage(string message, int speedDelay = 50)
+        public static void WriteMessage(string message, int speedDelay = 50, ColorMessage colorMessage = ColorMessage.Default)
         {
+            Console.ForegroundColor = (ConsoleColor)colorMessage;
+            
             foreach (var c in message)
             {
                 Console.Write(c);
@@ -104,6 +98,8 @@ namespace GeometryCalculator
                 Task.Delay(speedDelay).Wait();
             }
             Console.WriteLine();
+            
+            Console.ResetColor();
         }
 
 
@@ -133,10 +129,8 @@ namespace GeometryCalculator
             }
             else
             {
-                Console.ForegroundColor = color;
                 string errorDirectoryNotFound = "Directory does not exist.";
-                Features.WriteMessage(errorDirectoryNotFound);
-                Console.ResetColor();
+                Features.WriteMessage(message: errorDirectoryNotFound, colorMessage: ColorMessage.Erorr);
             }
         }
 
