@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -25,31 +26,52 @@ namespace Shapes
         // DodecahedronChosen method is called when the user chooses Dodecahedron
         public static void DodecahedronChosen()
         {
-            Console.WriteLine("Enter the edge length of the dodecahedron: ");
             try
             {
+                string enterEdgeLength = "Enter the edge length of the dodecahedron: ";
+                Features.WriteMessage(message: enterEdgeLength);
                 double edgeLength = double.Parse(Console.ReadLine());
+
                 Dodecahedron dodecahedron = new Dodecahedron(edgeLength);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the dodecahedron or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the dodecahedron or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the dodecahedron is {dodecahedron.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the dodecahedron is {dodecahedron.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the dodecahedron is {dodecahedron.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the dodecahedron is {dodecahedron.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the dodecahedron is {dodecahedron.Area()}");
-                    Console.WriteLine($"\nThe volume of the dodecahedron is {dodecahedron.Volume()}");
+                    string areaMessage = $"\nThe area of the dodecahedron is {dodecahedron.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the dodecahedron is {dodecahedron.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    DodecahedronChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 DodecahedronChosen();
             }
         }

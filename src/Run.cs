@@ -59,7 +59,7 @@ namespace GeometryCalculator
             catch (Exception e)
             {
                 string errorMessage = "Invalid input.\nAn error occurred: " + e.Message;
-                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Erorr);
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
 
                 string enterNumber = "Please enter a number.";
                 Features.WriteMessage(message: enterNumber);

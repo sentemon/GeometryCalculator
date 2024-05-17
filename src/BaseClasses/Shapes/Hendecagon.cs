@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -25,31 +26,50 @@ namespace Shapes
         // HendecagonChosen method is called when the user chooses Hendecagon
         public static void HendecagonChosen()
         {
-            Console.WriteLine("Enter the side length of the hendecagon: ");
             try
             {
+                string enterSideLength = "Enter the side length of the hendecagon: ";
+                Features.WriteMessage(message: enterSideLength);
                 double sideLength = double.Parse(Console.ReadLine());
+
                 Hendecagon hendecagon = new Hendecagon(sideLength);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the hendecagon or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the hendecagon or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the hendecagon is {hendecagon.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the hendecagon is {hendecagon.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the hendecagon is {hendecagon.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the hendecagon is {hendecagon.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the hendecagon is {hendecagon.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the hendecagon is {hendecagon.Perimeter()}");
+                    string areaMessage = $"\nThe area of the hendecagon is {hendecagon.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"\nThe perimeter of the hendecagon is {hendecagon.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 HendecagonChosen();
             }
         }

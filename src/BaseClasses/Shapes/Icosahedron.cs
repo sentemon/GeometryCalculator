@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -25,31 +26,52 @@ namespace Shapes
         // IcosahedronChosen method is called when the user chooses Icosahedron
         public static void IcosahedronChosen()
         {
-            Console.WriteLine("Enter the side length of the icosahedron: ");
             try
             {
+                string enterSideLength = "Enter the side length of the icosahedron: ";
+                Features.WriteMessage(message: enterSideLength);
                 double sideLength = double.Parse(Console.ReadLine());
+
                 Icosahedron icosahedron = new Icosahedron(sideLength);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the icosahedron or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the icosahedron or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the icosahedron is {icosahedron.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the icosahedron is {icosahedron.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the icosahedron is {icosahedron.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the icosahedron is {icosahedron.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the icosahedron is {icosahedron.Area()}");
-                    Console.WriteLine($"\nThe volume of the icosahedron is {icosahedron.Volume()}");
+                    string areaMessage = $"\nThe area of the icosahedron is {icosahedron.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the icosahedron is {icosahedron.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    IcosahedronChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 IcosahedronChosen();
             }
         }

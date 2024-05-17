@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,35 +30,60 @@ namespace Shapes
         // CuboidChosen method is called when the user chooses Cuboid
         public static void CuboidChosen()
         {
-            Console.WriteLine("Enter the length of the cuboid: ");
             try
             {
+                string enterLength = "Enter the length of the cuboid: ";
+                Features.WriteMessage(message: enterLength);
                 double length = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the width of the cuboid: ");
+
+                string enterWidth = "Enter the width of the cuboid: ";
+                Features.WriteMessage(message: enterWidth);
                 double width = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the cuboid: ");
+
+                string enterHeight = "Enter the height of the cuboid: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Cuboid cuboid = new Cuboid(length, width, height);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the cuboid or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the cuboid or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the cuboid is {cuboid.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the cuboid is {cuboid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the cuboid is {cuboid.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the cuboid is {cuboid.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the cuboid is {cuboid.Area()}");
-                    Console.WriteLine($"\nThe volume of the cuboid is {cuboid.Volume()}");
+                    string areaMessage = $"\nThe area of the cuboid is {cuboid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the cuboid is {cuboid.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    CuboidChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 CuboidChosen();
             }
         }

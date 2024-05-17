@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,33 +30,56 @@ namespace Shapes
         // CylinderChosen method is called when the user chooses Cylinder
         public static void CylinderChosen()
         {
-            Console.WriteLine("Enter the radius of the cylinder: ");
             try
             {
+                string enterRadius = "Enter the radius of the cylinder: ";
+                Features.WriteMessage(message: enterRadius);
                 double radius = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the cylinder: ");
+
+                string enterHeight = "Enter the height of the cylinder: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Cylinder cylinder = new Cylinder(radius, height);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the cylinder or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the cylinder or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the cylinder is {cylinder.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the cylinder is {cylinder.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the cylinder is {cylinder.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the cylinder is {cylinder.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the cylinder is {cylinder.Area()}");
-                    Console.WriteLine($"\nThe volume of the cylinder is {cylinder.Volume()}");
+                    string areaMessage = $"\nThe area of the cylinder is {cylinder.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"\nThe volume of the cylinder is {cylinder.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "\nInvalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Error);
+
+                    CylinderChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 CylinderChosen();
             }
         }

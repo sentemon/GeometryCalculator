@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -27,31 +28,52 @@ namespace Shapes
         // CubeChosen method is called when the user chooses Cube
         public static void CubeChosen()
         {
-            Console.WriteLine("Enter the side of the cube: ");
             try
             {
+                string enterSide = "Enter the side of the cube: ";
+                Features.WriteMessage(message: enterSide);
                 double side = double.Parse(Console.ReadLine());
+
                 Cube cube = new Cube(side);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the cube or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the cube or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the cube is {cube.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the cube is {cube.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the cube is {cube.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the cube is {cube.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the cube is {cube.Area()}");
-                    Console.WriteLine($"\nThe volume of the cube is {cube.Volume()}");
+                    string areaMessage = $"\nThe area of the cube is {cube.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the cube is {cube.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "\nInvalid input. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    CubeChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 CubeChosen();
             }
         }

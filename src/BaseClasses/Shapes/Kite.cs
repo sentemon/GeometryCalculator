@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,33 +30,56 @@ namespace Shapes
         // KiteChosen method is called when the user chooses Kite
         public static void KiteChosen()
         {
-            Console.WriteLine("Enter the first diagonal of the kite: ");
             try
             {
+                string enterDiagonal1 = "Enter the first diagonal of the kite: ";
+                Features.WriteMessage(message: enterDiagonal1);
                 double diagonal1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the second diagonal of the kite: ");
+
+                string enterDiagonal2 = "Enter the second diagonal of the kite: ";
+                Features.WriteMessage(message: enterDiagonal2);
                 double diagonal2 = double.Parse(Console.ReadLine());
+
                 Kite kite = new Kite(diagonal1, diagonal2);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the kite or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the kite or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the kite is {kite.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the kite is {kite.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the kite is {kite.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the kite is {kite.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the kite is {kite.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the kite is {kite.Perimeter()}");
+                    string areaMessage = $"\nThe area of the kite is {kite.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"\nThe perimeter of the kite is {kite.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    KiteChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 KiteChosen();
             }
         }

@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,33 +30,56 @@ namespace Shapes
         // ConeChosen method is called when the user chooses Cone
         public static void ConeChosen()
         {
-            Console.WriteLine("Enter the radius of the cone: ");
             try
             {
+                string enterRadius = "Enter the radius of the cone: ";
+                Features.WriteMessage(message: enterRadius);
                 double radius = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the cone: ");
+
+                string enterHeight = "Enter the height of the cone: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Cone cone = new Cone(radius, height);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the cone or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the cone or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the cone is {cone.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the cone is {cone.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the cone is {cone.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the cone is {cone.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the cone is {cone.Area()}");
-                    Console.WriteLine($"\nThe volume of the cone is {cone.Volume()}");
+                    string areaMessage = $"\nThe area of the cone is {cone.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the cone is {cone.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "\nInvalid input. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    ConeChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 ConeChosen();
             }
         }

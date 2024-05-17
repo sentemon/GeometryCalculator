@@ -44,19 +44,19 @@ namespace GeometryCalculator
                     catch (Exception e)
                     {
                         string errorInvokingMethod = $"Error invoking method: {e.Message}";
-                        Features.WriteMessage(message: errorInvokingMethod, colorMessage: ColorMessage.Erorr);
+                        Features.WriteMessage(message: errorInvokingMethod, colorMessage: ColorMessage.Error);
                     }
                 }
                 else
                 {
                     string errorMethodNotFound = $"{methodName} Method not found";
-                    Features.WriteMessage(message: errorMethodNotFound, colorMessage: ColorMessage.Erorr);
+                    Features.WriteMessage(message: errorMethodNotFound, colorMessage: ColorMessage.Error);
                 }
             }
             else
             {
                 string errorClassNotFound = $"{className} Class not found";
-                Features.WriteMessage(message: errorClassNotFound, colorMessage: ColorMessage.Erorr);
+                Features.WriteMessage(message: errorClassNotFound, colorMessage: ColorMessage.Error);
             }
         }
 
@@ -130,7 +130,7 @@ namespace GeometryCalculator
             else
             {
                 string errorDirectoryNotFound = "Directory does not exist.";
-                Features.WriteMessage(message: errorDirectoryNotFound, colorMessage: ColorMessage.Erorr);
+                Features.WriteMessage(message: errorDirectoryNotFound, colorMessage: ColorMessage.Error);
             }
         }
 
