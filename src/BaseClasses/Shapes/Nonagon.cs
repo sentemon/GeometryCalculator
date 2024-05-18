@@ -55,7 +55,7 @@ namespace Shapes
                     string areaMessage = $"\nThe area of the nonagon is {nonagon.Area()}";
                     Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
                     
-                    string perimeterMessage = $"\nThe perimeter of the nonagon is {nonagon.Perimeter()}";
+                    string perimeterMessage = $"The perimeter of the nonagon is {nonagon.Perimeter()}";
                     Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
@@ -71,7 +71,7 @@ namespace Shapes
 
                 string enterValidNumber = "Please enter a valid number.";
                 Features.WriteMessage(message: enterValidNumber);
-
+                
                 NonagonChosen();
             }
         }

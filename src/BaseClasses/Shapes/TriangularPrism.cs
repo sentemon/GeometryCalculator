@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -33,39 +34,68 @@ namespace Shapes
         // TriangularPrismChosen method is called when the user chooses TriangularPrism
         public static void TriangularPrismChosen()
         {
-            Console.WriteLine("Enter the base side of the triangular prism: ");
             try
             {
+                string enterBaseSide = "Enter the base side of the triangular prism: ";
+                Features.WriteMessage(message: enterBaseSide);
                 double baseSide = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the triangular prism: ");
+
+                string enterHeight = "Enter the height of the triangular prism: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the first side of the triangular prism: ");
+
+                string enterSide1 = "Enter the first side of the triangular prism: ";
+                Features.WriteMessage(message: enterSide1);
                 double side1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the second side of the triangular prism: ");
+
+                string enterSide2 = "Enter the second side of the triangular prism: ";
+                Features.WriteMessage(message: enterSide2);
                 double side2 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the third side of the triangular prism: ");
+
+                string enterSide3 = "Enter the third side of the triangular prism: ";
+                Features.WriteMessage(message: enterSide3);
                 double side3 = double.Parse(Console.ReadLine());
+
                 TriangularPrism triangularPrism = new TriangularPrism(baseSide, height, side1, side2, side3);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the triangular prism or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the triangular prism or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the triangular prism is {triangularPrism.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the triangular prism is {triangularPrism.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the triangular prism is {triangularPrism.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the triangular prism is {triangularPrism.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the triangular prism is {triangularPrism.Area()}");
-                    Console.WriteLine($"\nThe volume of the triangular prism is {triangularPrism.Volume()}");
+                    string areaMessage = $"\nThe area of the triangular prism is {triangularPrism.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the triangular prism is {triangularPrism.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    TriangularPrismChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 TriangularPrismChosen();
             }
         }

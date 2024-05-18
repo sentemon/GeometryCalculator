@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -25,31 +26,52 @@ namespace Shapes
         // SphereChosen method is called when the user chooses Sphere
         public static void SphereChosen()
         {
-            Console.WriteLine("Enter the radius of the sphere: ");
             try
             {
+                string enterRadius = "Enter the radius of the sphere: ";
+                Features.WriteMessage(message: enterRadius);
                 double radius = double.Parse(Console.ReadLine());
+
                 Sphere sphere = new Sphere(radius);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the sphere or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the sphere or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the sphere is {sphere.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the sphere is {sphere.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the sphere is {sphere.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the sphere is {sphere.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the sphere is {sphere.Area()}");
-                    Console.WriteLine($"\nThe volume of the sphere is {sphere.Volume()}");
+                    string areaMessage = $"\nThe area of the sphere is {sphere.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the sphere is {sphere.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    SphereChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 SphereChosen();
             }
         }

@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -27,33 +28,56 @@ namespace Shapes
         // PentagonalPrismChosen method is called when the user chooses PentagonalPrism
         public static void PentagonalPrismChosen()
         {
-            Console.WriteLine("Enter the side length of the pentagon: ");
             try
             {
+                string enterSideLength = "Enter the side length of the pentagonal prism: ";
+                Features.WriteMessage(message: enterSideLength);
                 double sideLength = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the pentagonal prism: ");
+
+                string enterHeight = "Enter the height of the pentagonal prism: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 PentagonalPrism pentagonalPrism = new PentagonalPrism(sideLength, height);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the pentagonal prism or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the pentagonal prism or both? (Area: a | Volume: v | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the pentagonal prism is {pentagonalPrism.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the pentagonal prism is {pentagonalPrism.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}");
-                    Console.WriteLine($"\nThe volume of the pentagonal prism is {pentagonalPrism.Volume()}");
+                    string areaMessage = $"\nThe area of the pentagonal prism is {pentagonalPrism.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the pentagonal prism is {pentagonalPrism.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    PentagonalPrismChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 PentagonalPrismChosen();
             }
         }

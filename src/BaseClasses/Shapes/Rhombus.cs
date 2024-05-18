@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,33 +30,56 @@ namespace Shapes
         // RhombusChosen method is called when the user chooses Rhombus
         public static void RhombusChosen()
         {
-            Console.WriteLine("Enter the side of the rhombus: ");
             try
             {
+                string enterSide = "Enter the side of the rhombus: ";
+                Features.WriteMessage(message: enterSide);
                 double side = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the rhombus: ");
+
+                string enterHeight = "Enter the height of the rhombus: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Rhombus rhombus = new Rhombus(side, height);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the rhombus or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the rhombus or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the rhombus is {rhombus.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the rhombus is {rhombus.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the rhombus is {rhombus.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the rhombus is {rhombus.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the rhombus is {rhombus.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the rhombus is {rhombus.Perimeter()}");
+                    string areaMessage = $"\nThe area of the rhombus is {rhombus.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the rhombus is {rhombus.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    RhombusChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 RhombusChosen();
             }
         }

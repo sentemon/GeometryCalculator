@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -35,39 +36,68 @@ namespace Shapes
         // TriangleChosen method is called when the user chooses Triangle
         public static void TriangleChosen()
         {
-            Console.WriteLine("Enter the base of the triangle: ");
             try
             {
+                string enterBase = "Enter the base of the triangle: ";
+                Features.WriteMessage(message: enterBase);
                 double b = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the triangle: ");
+
+                string enterHeight = "Enter the height of the triangle: ";
+                Features.WriteMessage(message: enterHeight);
                 double h = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the first side of the triangle: ");
+
+                string enterSide1 = "Enter the first side of the triangle: ";
+                Features.WriteMessage(message: enterSide1);
                 double s1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the second side of the triangle: ");
+
+                string enterSide2 = "Enter the second side of the triangle: ";
+                Features.WriteMessage(message: enterSide2);
                 double s2 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the third side of the triangle: ");
+
+                string enterSide3 = "Enter the third side of the triangle: ";
+                Features.WriteMessage(message: enterSide3);
                 double s3 = double.Parse(Console.ReadLine());
+
                 Triangle triangle = new Triangle(b, h, s1, s2, s3);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the triangle or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the triangle or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the triangle is {triangle.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the triangle is {triangle.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the triangle is {triangle.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the triangle is {triangle.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the triangle is {triangle.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the triangle is {triangle.Perimeter()}");
+                    string areaMessage = $"\nThe area of the triangle is {triangle.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the triangle is {triangle.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "\nInvalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    TriangleChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 TriangleChosen();
             }
         }

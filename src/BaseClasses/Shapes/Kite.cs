@@ -61,7 +61,7 @@ namespace Shapes
                     string areaMessage = $"\nThe area of the kite is {kite.Area()}";
                     Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
 
-                    string perimeterMessage = $"\nThe perimeter of the kite is {kite.Perimeter()}";
+                    string perimeterMessage = $"The perimeter of the kite is {kite.Perimeter()}";
                     Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else

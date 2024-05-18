@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -27,33 +28,56 @@ namespace Shapes
         // OvalChosen method is called when the user chooses Oval
         public static void OvalChosen()
         {
-            Console.WriteLine("Enter the radius1 of the oval: ");
             try
             {
+                string enterRadius1 = "Enter the radius1 of the oval: ";
+                Features.WriteMessage(message: enterRadius1);
                 double radius1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the radius2 of the oval: ");
-                double radius2 = double.Parse(Console.ReadLine());
-                Oval oval = new Oval(radius1, radius2);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the oval or both? (Area: a | Perimeter: p | Both: b)");
+                string enterRadius2 = "Enter the radius2 of the oval: ";
+                Features.WriteMessage(message: enterRadius2);
+                double radius2 = double.Parse(Console.ReadLine());
+
+                Oval oval = new Oval(radius1, radius2);
+                
+                string choiceMessage = "Do you want to calculate the area or perimeter of the oval or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the oval is {oval.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the oval is {oval.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the oval is {oval.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the oval is {oval.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the oval is {oval.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the oval is {oval.Perimeter()}");
+                    string areaMessage = $"\nThe area of the oval is {oval.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the oval is {oval.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    OvalChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 OvalChosen();
             }
         }

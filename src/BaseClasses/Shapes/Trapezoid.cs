@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -31,35 +32,60 @@ namespace Shapes
         // TrapezoidChosen method is called when the user chooses Trapezoid
         public static void TrapezoidChosen()
         {
-            Console.WriteLine("Enter the first base of the trapezoid: ");
             try
             {
+                string enterBase1 = "Enter the first base of the trapezoid: ";
+                Features.WriteMessage(message: enterBase1);
                 double base1 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the second base of the trapezoid: ");
-                double base2 = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the trapezoid: ");
+
+                string enterBase2 = "Enter the second base of the trapezoid: ";
+                Features.WriteMessage(message: enterBase2);
+                double base2 = double.Parse(Console.ReadLine());    
+
+                string enterHeight = "Enter the height of the trapezoid: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Trapezoid trapezoid = new Trapezoid(base1, base2, height);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the trapezoid or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the trapezoid or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the trapezoid is {trapezoid.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the trapezoid is {trapezoid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the trapezoid is {trapezoid.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the trapezoid is {trapezoid.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the trapezoid is {trapezoid.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the trapezoid is {trapezoid.Perimeter()}");
+                    string areaMessage = $"\nThe area of the trapezoid is {trapezoid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the trapezoid is {trapezoid.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    TrapezoidChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+                
                 TrapezoidChosen();
             }
         }

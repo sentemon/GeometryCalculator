@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -25,31 +26,51 @@ namespace Shapes
         // SemicircleChosen method is called when the user chooses Semicircle
         public static void SemicircleChosen()
         {
-            Console.WriteLine("Enter the radius of the semicircle: ");
             try
             {
+                string enterRadius = "Enter the radius of the semicircle: ";
+                Features.WriteMessage(message: enterRadius);
                 double radius = double.Parse(Console.ReadLine());
+
                 Semicircle semicircle = new Semicircle(radius);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the semicircle or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the semicircle or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the semicircle is {semicircle.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the semicircle is {semicircle.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the semicircle is {semicircle.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the semicircle is {semicircle.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the semicircle is {semicircle.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the semicircle is {semicircle.Perimeter()}");
+                    string areaMessage = $"\nThe area of the semicircle is {semicircle.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the semicircle is {semicircle.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+                    SemicircleChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 SemicircleChosen();
             }
         }

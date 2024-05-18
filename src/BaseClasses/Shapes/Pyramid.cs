@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -41,35 +42,59 @@ namespace Shapes
         // PyramidChosen method is called when the user chooses Pyramid
         public static void PyramidChosen()
         {
-            Console.WriteLine("Enter the base area of the pyramid: ");
             try
             {
+                string enterBaseArea = "Enter the base area of the pyramid: ";
+                Features.WriteMessage(message: enterBaseArea);
                 double baseArea = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the pyramid: ");
+
+                string enterHeight = "Enter the height of the pyramid: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the slant height of the pyramid: ");
+
+                string enterSlantHeight = "Enter the slant height of the pyramid: ";
+                Features.WriteMessage(message: enterSlantHeight);
                 double slantHeight = double.Parse(Console.ReadLine());
+
                 Pyramid pyramid = new Pyramid(baseArea, height, slantHeight);
 
-                Console.WriteLine("Do you want to calculate the area or volume of the pyramid or both? (Area: a | Volume: v | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or volume of the pyramid or both? (Area: a | Volume: v | Both: b)";
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the pyramid is {pyramid.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the pyramid is {pyramid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "v")
-                    Console.WriteLine($"\nThe volume of the pyramid is {pyramid.Volume()}");
+                {
+                    string volumeMessage = $"\nThe volume of the pyramid is {pyramid.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the pyramid is {pyramid.Area()}");
-                    Console.WriteLine($"\nThe volume of the pyramid is {pyramid.Volume()}");
+                    string areaMessage = $"\nThe area of the pyramid is {pyramid.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string volumeMessage = $"The volume of the pyramid is {pyramid.Volume()}";
+                    Features.WriteMessage(message: volumeMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    PyramidChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 PyramidChosen();
             }
         }

@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -29,33 +30,56 @@ namespace Shapes
         // ParallelogramChosen method is called when the user chooses Parallelogram
         public static void ParallelogramChosen()
         {
-            Console.WriteLine("Enter the base side of the parallelogram: ");
             try
             {
+                string enterBaseSide = "Enter the base side of the parallelogram: ";
+                Features.WriteMessage(message: enterBaseSide);
                 double baseSide = double.Parse(Console.ReadLine());
-                Console.WriteLine("Enter the height of the parallelogram: ");
+
+                string enterHeight = "Enter the height of the parallelogram: ";
+                Features.WriteMessage(message: enterHeight);
                 double height = double.Parse(Console.ReadLine());
+
                 Parallelogram parallelogram = new Parallelogram(baseSide, height);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the parallelogram or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the parallelogram or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the parallelogram is {parallelogram.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the parallelogram is {parallelogram.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the parallelogram is {parallelogram.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the parallelogram is {parallelogram.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the parallelogram is {parallelogram.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the parallelogram is {parallelogram.Perimeter()}");
+                    string areaMessage = $"\nThe area of the parallelogram is {parallelogram.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the parallelogram is {parallelogram.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    ParallelogramChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+
                 ParallelogramChosen();
             }
         }

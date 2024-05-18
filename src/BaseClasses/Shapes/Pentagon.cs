@@ -1,4 +1,5 @@
 using System;
+using GeometryCalculator;
 
 namespace Shapes
 {
@@ -30,31 +31,52 @@ namespace Shapes
         // PentagonChosen method is called when the user chooses Pentagon
         public static void PentagonChosen()
         {
-            Console.WriteLine("Enter the side of the pentagon: ");
             try
             {
+                string enterSide = "Enter the side of the pentagon: ";
+                Features.WriteMessage(message: enterSide);
                 double side = double.Parse(Console.ReadLine());
+
                 Pentagon pentagon = new Pentagon(side);
 
-                Console.WriteLine("Do you want to calculate the area or perimeter of the pentagon or both? (Area: a | Perimeter: p | Both: b)");
+                string choiceMessage = "Do you want to calculate the area or perimeter of the pentagon or both? (Area: a | Perimeter: p | Both: b)";
+                Features.WriteMessage(message: choiceMessage);
                 string choice = Console.ReadKey().Key.ToString().ToLower();
 
                 if (choice == "a")
-                    Console.WriteLine($"\nThe area of the pentagon is {pentagon.Area()}");
+                {
+                    string areaMessage = $"\nThe area of the pentagon is {pentagon.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "p")
-                    Console.WriteLine($"\nThe perimeter of the pentagon is {pentagon.Perimeter()}");
+                {
+                    string perimeterMessage = $"\nThe perimeter of the pentagon is {pentagon.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
+                }
                 else if (choice == "b")
                 {
-                    Console.WriteLine($"\nThe area of the pentagon is {pentagon.Area()}");
-                    Console.WriteLine($"\nThe perimeter of the pentagon is {pentagon.Perimeter()}");
+                    string areaMessage = $"\nThe area of the pentagon is {pentagon.Area()}";
+                    Features.WriteMessage(message: areaMessage, colorMessage: ColorMessage.Success);
+
+                    string perimeterMessage = $"The perimeter of the pentagon is {pentagon.Perimeter()}";
+                    Features.WriteMessage(message: perimeterMessage, colorMessage: ColorMessage.Success);
                 }
                 else
-                    Console.WriteLine("\nInvalid input. Please enter a valid choice.");
+                {
+                    string invalidChoice = "Invalid choice. Please enter a valid choice.";
+                    Features.WriteMessage(message: invalidChoice, colorMessage: ColorMessage.Warning);
+
+                    PentagonChosen();
+                }
             }
             catch (Exception e)
             {
-                Console.WriteLine($"\nError: {e.Message}");
-                Console.WriteLine("Please enter a valid number.");
+                string errorMessage = $"\nError: {e.Message}";
+                Features.WriteMessage(message: errorMessage, colorMessage: ColorMessage.Error);
+
+                string enterValidNumber = "Please enter a valid number.";
+                Features.WriteMessage(message: enterValidNumber);
+            
                 PentagonChosen();
             }
         }
