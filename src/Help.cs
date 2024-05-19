@@ -2,15 +2,24 @@ using System;
 
 namespace GeometryCalculator
 {
-    // Actually, this class is not used in the program.
     public class Help
     {
         public static void ShowHelp()
         {
-            Console.WriteLine("Geometry Calculator");
-            Console.WriteLine("Commands:");
-            Console.WriteLine("\t!help - Show this help");
-            Console.WriteLine("\t!exit - Exit the program");
+            string commandsMessage = "Commands:";
+            string spaceCommandMessage = "When you press the 'space' key while text is being printed, the entire text will be displayed immediately.";
+            string dash = "|--------------------------|";
+
+            int maxWidth = dash.Length - 4; 
+            string spaceCommandDisplay = $" 'space' - {spaceCommandMessage} ";
+            string paddedMessage = spaceCommandDisplay.PadRight(maxWidth);
+
+            string verticalBar = $"|{paddedMessage}|";
+
+            Features.WriteMessage(commandsMessage);
+            Features.WriteMessage(dash);
+            Features.WriteMessage(verticalBar);
+            Features.WriteMessage(dash);
         }
     }
 }

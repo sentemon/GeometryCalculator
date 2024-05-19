@@ -14,6 +14,7 @@ namespace GeometryCalculator
             Console.Title = "GeometryCalculator";
             Console.Clear();
             Run.Welcome();
+            Help.ShowHelp();
             Features.WriteShapes();
             Run.StartProgram();
         }
