@@ -1,7 +1,7 @@
 # Geometric Calculator [Beta]
 
 ## Description
-The "Geometry Calculator" project is a console-based application designed to calculate the properties of various geometric shapes. This calculator offers a terminal interface for computing key properties such as area, perimeter, volume, and more for different shapes. The project is released under the GNU GENERAL PUBLIC LICENSE.
+The "Geometry Calculator" project is a console-based application designed to calculate the properties of various geometric shapes. This calculator offers a terminal interface for computing key properties such as area, perimeter, volume, and more for different shapes. The project is released under the MIT License.
 
 ## Usage
 0. Before running the project, make sure you have the [.NET Core SDK 7.0](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) installed.
